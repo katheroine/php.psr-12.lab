@@ -282,3 +282,433 @@ $htmlDoc->setAuthor($htmlDocAuthor);
 require_once('view.php');
 
 ```
+
+## Indenting
+
+##### ✤ Indenting character
+
+**Code MUST use `spaces` for indenting and MUST NOT use tabs for indenting.**
+[🔗](https://www.php-fig.org/psr/psr-12/#24-indenting)
+
+**MUST NOT use tabs for indenting.**
+
+##### ✤ Indenting length
+
+**Code MUST use an indent of `4` spaces for each indent level.**
+[🔗](https://www.php-fig.org/psr/psr-12/#24-indenting)
+
+**`HtmlDoc.php`**
+
+```php
+<?php
+
+namespace PHPLab\StandardPSR1;
+
+class HtmlDoc
+{
+    public $languageCode = 'en-GB';
+    public $charset = 'utf-8';
+    public $language = 'english';
+    public $description = 'PSR-1 example document';
+    public $keywords = 'php,psr,psr-1';
+    public $author;
+    public $title = 'Some PSR-1 example page';
+    public $header = 'PSR-1 example';
+    public $footer = 'Copyright PHP.lab 2024';
+    public $content = 'Hi, there!';
+
+    public function setAuthor($htmlDocAuthor)
+    {
+        $this->author = [
+            'name' => $htmlDocAuthor->name,
+            'email' => $htmlDocAuthor->email,
+        ];
+    }
+}
+
+```
+
+## Header of a PHP file
+
+##### ✤ Header of a PHP file contents
+
+**The header of a PHP file may consist of a number of different blocks.**
+[🔗](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+##### ✤ Blank line separators of the blocks in a header of a PHP file
+
+**If present, each of the blocks MUST be separated by a single blank line and MUST not contain a blank line.**
+[🔗](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+##### ✤ Order of the blocks in a header of a PHP file
+
+**Each block MUST be in the order listed below, although blocks that are not relevant may be omitted:**
+* **opening `<?php` tag**
+* **file-level docblock**
+* **one or more declare statements**
+* **the namespace declaration of the file**
+* **one or more class-based…**
+* **…function-based…**
+* **…constant-based `use` import statements**
+* **the remainder of the code in the file**
+[🔗](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+**`HtmlDoc.php`**
+
+```php
+<?php
+
+/*
+ * This file is part of the PHP.lab package.
+ *
+ * (c) 2026 Katarzyna Krasińska <katheroine@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace PHPLab\StandardPSR12;
+
+use PHPLab\StandardPSR12\HtmlDocAuthor;
+
+class HtmlDoc
+{
+}
+
+```
+
+##### ✤ Header of the files with mix of HTML and PHP
+
+**When a file contains a mix of HTML and PHP, any of the above sections may still be used.**
+[🔗](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+**If so, they MUST be present at the top of the file, even if the remainder of the code consists of a closing PHP tag and then a mixture of HTML and PHP.**
+[🔗](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+**`view.php`**
+
+```php
+<?php
+
+/*
+ * This file is part of the PHP.lab package.
+ *
+ * (c) 2026 Katarzyna Krasińska <katheroine@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
+namespace PHPLab\StandardPSR12;
+
+use PHPLab\StandardPSR12\HtmlDocAuthor;
+
+$htmlDoc = new HtmlDoc();
+$htmlDocAuthor = new HtmlDocAuthor();
+$htmlDoc->setAuthor($htmlDocAuthor);
+
+?>
+<!doctype html>
+<html lang="<?= $htmlDoc->languageCode ?>">
+  <head>
+    <meta charset="<?= $htmlDoc->charset ?>">
+    <meta name="language" content="<?= $htmlDoc->language ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= $htmlDoc->description ?>">
+    <meta name="keywords" content="<?= $htmlDoc->keywords ?>">
+    <meta name="author" content="<?= $htmlDoc->author['name'] ?> <<?= $htmlDoc->author['email'] ?>>">
+    <title><?= $htmlDoc->title ?></title>
+  </head>
+  <body>
+    <?php if (isset($htmlDoc->header)): ?>
+    <header>
+        <?= $htmlDoc->header ?>
+    </header>
+    <?php endif; ?>
+    <?php if (isset($htmlDoc->content)): ?>
+    <div id="content">
+        <?= $htmlDoc->content ?>
+    </div>
+    <?php endif; ?>
+    <?php if (isset($htmlDoc->footer)): ?>
+    <footer>
+        <?= $htmlDoc->footer ?>
+    </footer>
+    <?php endif; ?>
+  </body>
+</html>
+
+```
+
+##### ✤ Opening `<?php` tag
+
+**When the opening `<?php` tag is on the first line of the file, it MUST be on its own line with no other statements unless it is a file containing markup outside of PHP opening and closing tags.**
+[🔗](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+## Directives
+
+##### ✤ Declare statements formatting
+
+**Declare statements MUST contain no spaces and MUST be exactly `declare(strict_types=1)` (with an optional semi-colon terminator).**
+[🔗](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+**`HtmlDocAuthor.php`**
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace PHPLab\StandardPSR12;
+
+class HtmlDocAuthor
+{
+    const EMAIL_DOMAIN = 'php.lab';
+
+    public $name = 'Some Author';
+    public $email = 'author@' . self::EMAIL_DOMAIN;
+}
+
+```
+
+##### ✤ Block declare statements formatting
+
+**Block declare statements are allowed and MUST be formatted as below. Note position of braces and spacing:**
+```php
+declare(ticks=1) {
+
+    // some code
+
+}
+```
+[🔗](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+##### ✤ Strict types declaration formatting in files containing markup outside PHP opening and closing tags
+
+**When wishing to declare strict types in files containing markup outside PHP opening and closing tags, the declaration MUST be on the first line of the file and include an opening PHP tag, the strict types declaration and closing tag.**
+[🔗](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+For example:
+
+```php
+<?php declare(strict_types=1) ?>
+<html>
+<body>
+    <?php
+        // ... additional PHP code ...
+    ?>
+</body>
+</html>
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+**`view.php`**
+
+```php
+<?php declare(strict_types=1) ?>
+<!doctype html>
+<html lang="<?= $htmlDoc->languageCode ?>">
+  <head>
+    <meta charset="<?= $htmlDoc->charset ?>">
+    <meta name="language" content="<?= $htmlDoc->language ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= $htmlDoc->description ?>">
+    <meta name="keywords" content="<?= $htmlDoc->keywords ?>">
+    <meta name="author" content="<?= $htmlDoc->author['name'] ?> <<?= $htmlDoc->author['email'] ?>>">
+    <title><?= $htmlDoc->title ?></title>
+  </head>
+  <body>
+    <?php if (isset($htmlDoc->header)): ?>
+    <header>
+        <?= $htmlDoc->header ?>
+    </header>
+    <?php endif; ?>
+    <?php if (isset($htmlDoc->content)): ?>
+    <div id="content">
+        <?= $htmlDoc->content ?>
+    </div>
+    <?php endif; ?>
+    <?php if (isset($htmlDoc->footer)): ?>
+    <footer>
+        <?= $htmlDoc->footer ?>
+    </footer>
+    <?php endif; ?>
+  </body>
+</html>
+
+```
+
+## Imports
+
+The following example illustrates a complete list of all blocks:
+
+```php
+<?php
+
+/**
+ * This file contains an example of coding styles.
+ */
+
+declare(strict_types=1);
+
+namespace Vendor\Package;
+
+use Vendor\Package\{ClassA as A, ClassB, ClassC as C};
+use Vendor\Package\SomeNamespace\ClassD as D;
+use Vendor\Package\AnotherNamespace\ClassE as E;
+
+use function Vendor\Package\{functionA, functionB, functionC};
+use function Another\Vendor\functionD;
+
+use const Vendor\Package\{CONSTANT_A, CONSTANT_B, CONSTANT_C};
+use const Another\Vendor\CONSTANT_D;
+
+/**
+ * FooBar is an example class.
+ */
+class FooBar
+{
+    // ... additional PHP code ...
+}
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+##### ✤ Use declarations placement
+
+**Import statements MUST never begin with a leading backslash.**
+[🔗](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+* Wrong:
+
+```php
+use \PHPLab\StandardPSR12\HtmlDoc;
+use \PHPLab\StandardPSR12\HtmlDocAuthor;
+```
+
+* Right:
+
+```php
+use PHPLab\StandardPSR12\HtmlDoc;
+use PHPLab\StandardPSR12\HtmlDocAuthor;
+```
+
+##### ✤ Fully qualified import statements
+
+**Import statements MUST always be fully qualified.**
+[🔗](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+* Wrong:
+
+```php
+use StandardPSR12\HtmlDoc;
+use HtmlDocAuthor;
+```
+
+* Right:
+
+```php
+use PHPLab\StandardPSR12\HtmlDoc;
+use PHPLab\StandardPSR12\HtmlDocAuthor;
+```
+
+##### ✤ Import with compound namespaces
+
+**Compound namespaces with a depth of more than two MUST NOT be used.**
+[🔗](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+Therefore the following is the maximum compounding depth allowed:
+
+```php
+<?php
+
+use Vendor\Package\SomeNamespace\{
+    SubnamespaceOne\ClassA,
+    SubnamespaceOne\ClassB,
+    SubnamespaceTwo\ClassY,
+    ClassZ,
+};
+```
+
+And the following would not be allowed:
+
+```php
+<?php
+
+use Vendor\Package\SomeNamespace\{
+    SubnamespaceOne\AnotherNamespace\ClassA,
+    SubnamespaceOne\ClassB,
+    ClassZ,
+};
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#3-declare-statements-namespace-and-import-statements)
+
+* Right:
+
+```php
+use PHPLab\StandardPSR12\{
+    HtmlDoc,
+    HtmlDocAuthor,
+    Language\EngGBLangTrait
+};
+```
+
+```php
+use PHPLab\{
+    StandardPSR12\HtmlDoc,
+    StandardPSR12\HtmlDocAuthor
+};
+
+use PHPLab\StandardPSR12\Language\EngGBLangTrait;
+```
+
+* Wrong:
+
+```php
+use PHPLab\{
+    StandardPSR12\HtmlDoc,
+    StandardPSR12\HtmlDocAuthor,
+    StandardPSR12\Language\EngGBLangTrait
+};
+```
+
+## Keywords, types & predefined constants
+
+##### ✤ Keywords case
+
+**All PHP reserved keywords MUST be in `lower case`.**
+[🔗](https://www.php-fig.org/psr/psr-12/#25-keywords-and-types)
+
+**Any new keywords added to future PHP versions MUST be in lower case.**
+[🔗](https://www.php-fig.org/psr/psr-12/#25-keywords-and-types)
+
+The PHP constants `true`, `false`, and `null` should be in `lower case` too.
+
+##### ✤ Types case
+
+**All PHP reserved types MUST be in lower case.**
+[🔗](https://www.php-fig.org/psr/psr-12/#25-keywords-and-types)
+
+**Any new types added to future PHP versions MUST be in lower case.**
+[🔗](https://www.php-fig.org/psr/psr-12/#25-keywords-and-types)
+
+##### ✤ Types short/log forms
+
+**Short form of type keywords MUST be used i.e. `bool` instead of `boolean`, `int` instead of `integer` etc.**
+[🔗](https://www.php-fig.org/psr/psr-12/#25-keywords-and-types)
+
+**`User.php`**
+
+```php
+class User
+{
+    public bool $registered = true;
+    public int $level = 10;
+}
+```
