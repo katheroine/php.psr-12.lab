@@ -712,3 +712,530 @@ class User
     public int $level = 10;
 }
 ```
+
+## Operators
+
+##### ✤ Multiple spaces around an operator
+
+**When space is permitted around an operator, multiple spaces MAY be used for readability purposes.**
+[🔗](https://www.php-fig.org/psr/psr-12/#6-operators)
+
+```php
+$this->email = 'author@'
+    . self::EMAIL_DOMAIN;
+```
+
+### Unary operators
+
+##### ✤ Space between the operator and operand in the increment & decrement operators
+
+**The increment/decrement operators MUST NOT have any space between the operator and operand.**
+[🔗](https://www.php-fig.org/psr/psr-12/#61-unary-operators)
+
+```php
+$this->level++;
+```
+
+##### ✤ Space within the parentheses in type casting operators
+
+**Type casting operators MUST NOT have any space within the parentheses.**
+[🔗](https://www.php-fig.org/psr/psr-12/#6-operators)
+
+```php
+$isWorking = (bool) $this->level;
+```
+
+### Binary operators
+
+##### ✤ Spaces around the binary arithmetic, comparison, assignment, bitwise, logical, string, and type operators
+
+**All binary arithmetic, comparison, assignment, bitwise, logical, string, and type operators MUST be preceded and followed by at least one space.**
+[🔗](https://www.php-fig.org/psr/psr-12/#62-binary-operators)
+
+```php
+$this->email = 'author@' . self::EMAIL_DOMAIN;
+```
+
+### Ternary operators
+
+##### ✤ Spaces around the characters of the conditional operator
+
+**The conditional operator, also known simply as the ternary operator, MUST be preceded and followed by at least one space around both the `?` and `:` characters.**
+[🔗](https://www.php-fig.org/psr/psr-12/#63-ternary-operators)
+
+```php
+$label = empty($this->nickname) ? $this->firstName : $this->nickname;
+```
+
+##### ✤ Spaces around the characters of the conditional operator when the middle operand is omitted
+
+**When the middle operand of the conditional operator is omitted, the operator MUST follow the same style rules as other binary comparison operators.**
+[🔗](https://www.php-fig.org/psr/psr-12/#63-ternary-operators)
+
+```php
+$isActive = $this->isRegistered ?: (bool) $this->level;
+```
+
+## Control structures
+
+##### ✤ Space after control structure keyword
+
+**There MUST be one space after the control structure keyword.**
+[🔗](https://www.php-fig.org/psr/psr-12/#5-control-structures)
+
+##### ✤ Space after opening parethensis in control structure
+
+**There MUST NOT be a space after the opening parenthesis.**
+[🔗](https://www.php-fig.org/psr/psr-12/#5-control-structures)
+
+##### ✤ Space before closing parethensis in control structure
+
+**There MUST NOT be a space before the closing parenthesis.**
+[🔗](https://www.php-fig.org/psr/psr-12/#5-control-structures)
+
+##### ✤ Space between closing parethensis and opening brace
+
+**There MUST be one space between the closing parenthesis and the opening brace.**
+[🔗](https://www.php-fig.org/psr/psr-12/#5-control-structures)
+
+##### ✤ Closing brace placement in control structure
+
+**The closing brace MUST be on the next line after the body.**
+[🔗](https://www.php-fig.org/psr/psr-12/#5-control-structures)
+
+##### ✤ Control structure body indention
+
+**The structure body MUST be indented once.**
+[🔗](https://www.php-fig.org/psr/psr-12/#5-control-structures)
+
+##### ✤ Control structure body placement
+
+**The body MUST be on the next line after the opening brace.**
+[🔗](https://www.php-fig.org/psr/psr-12/#5-control-structures)
+
+##### ✤ Control structure body enclosed by braces to indicate control structure body regardless of the number of statements it contains
+
+**The body of each structure MUST be enclosed by braces.**
+[🔗](https://www.php-fig.org/psr/psr-12/#5-control-structures)
+
+*This standardizes how the structures look and reduces the likelihood of introducing errors as new lines get added to the body.*
+[🔗](https://www.php-fig.org/psr/psr-12/#5-control-structures)
+
+```php
+if (! $this->isRegistered) {
+    $status = self::STATUS_HALTING;
+} elseif ($this->level > 10) {
+    $status = self::STATUS_INVOLVED;
+} else {
+    $status = self::STATUS_CERTAIN;
+}
+```
+
+### Control structure `if` - `elseif` - `else`
+
+An if structure looks like the following. Note the placement of parentheses, spaces, and braces; and that else and elseif are on the same line as the closing brace from the earlier body.
+
+```php
+<?php
+
+if ($expr1) {
+    // if body
+} elseif ($expr2) {
+    // elseif body
+} else {
+    // else body;
+}
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#51-if-elseif-else)
+
+```php
+if (! $this->isRegistered) {
+    $status = self::STATUS_HALTING;
+} elseif ($this->level > 10) {
+    $status = self::STATUS_INVOLVED;
+} else {
+    $status = self::STATUS_CERTAIN;
+}
+```
+
+##### ✤ Keywords `else if` or keyword `elseif`
+
+**The keyword `elseif` SHOULD be used instead of `else if` so that all control keywords look like single words.**
+[🔗](https://www.php-fig.org/psr/psr-12/#51-if-elseif-else)
+
+* Wrong:
+
+```php
+if (! $this->isRegistered) {
+    $status = self::STATUS_HALTING;
+} else if ($this->level > 10) {
+    $status = self::STATUS_INVOLVED;
+} else {
+    $status = self::STATUS_CERTAIN;
+}
+```
+
+* Right:
+
+```php
+if (! $this->isRegistered) {
+    $status = self::STATUS_HALTING;
+} elseif ($this->level > 10) {
+    $status = self::STATUS_INVOLVED;
+} else {
+    $status = self::STATUS_CERTAIN;
+}
+```
+
+##### ✤ Splitting expression in parentheses across multiple lines
+
+**Expressions in parentheses MAY be split across multiple lines, where each subsequent line is indented at least once.**
+[🔗](https://www.php-fig.org/psr/psr-12/#51-if-elseif-else)
+
+##### ✤ First condition placement when expression is split across multiple lines
+
+**When doing so, the first condition MUST be on the next line.**
+[🔗](https://www.php-fig.org/psr/psr-12/#51-if-elseif-else)
+
+##### ✤ Closing parenthesis and opening brace placement when expression is split across multiple lines
+
+**The closing parenthesis and opening brace MUST be placed together on their own line with one space between them.**
+[🔗](https://www.php-fig.org/psr/psr-12/#51-if-elseif-else)
+
+##### ✤ Boolean operators between conditions placement when expression is split across multiple lines
+
+**Boolean operators between conditions MUST always be at the beginning or at the end of the line, not a mix of both.**
+[🔗](https://www.php-fig.org/psr/psr-12/#51-if-elseif-else)
+
+```php
+<?php
+
+if (
+    $expr1
+    && $expr2
+) {
+    // if body
+} elseif (
+    $expr3
+    && $expr4
+) {
+    // elseif body
+}
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#51-if-elseif-else)
+
+```php
+if (
+    $this->isRegistered
+    && $this->level > 10
+) {
+    $status = self::STATUS_INVOLVED;
+}
+```
+
+### Control structure `switch` - `case`
+
+```php
+switch ($status) {
+    case self::STATUS_HALTING:
+        $description = "Started to use the application.";
+        break;
+    case self::STATUS_CERTAIN:
+        $description = "Using the application.";
+        break;
+    case self::STATUS_INVOLVED:
+        $description = "Engeged in using the application";
+        break;
+    default:
+        $description = "";
+        break;
+}
+```
+
+##### ✤ Statement case indention
+
+A switch structure looks like the following. Note the placement of parentheses, spaces, and braces.
+
+```php
+<?php
+
+switch ($expr) {
+    case 0:
+        echo 'First case, with a break';
+        break;
+    case 1:
+        echo 'Second case, which falls through';
+        // no break
+    case 2:
+    case 3:
+    case 4:
+        echo 'Third case, return instead of break';
+        return;
+    default:
+        echo 'Default case';
+        break;
+}
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#52-switch-case)
+
+**The `case` statement MUST be indented once from `switch`.**
+[🔗](https://www.php-fig.org/psr/psr-12/#52-switch-case)
+
+##### ✤ Keyword break indention
+
+**The `break` keyword (or other terminating keywords) MUST be indented at the same level as the `case` body.**
+[🔗](https://www.php-fig.org/psr/psr-12/#52-switch-case)
+
+##### ✤ Comment when fall-through is intentional in a non-empty case body
+
+```php
+switch ($status) {
+    case self::STATUS_HALTING:
+        $description = "Started to use the application.";
+        break;
+}
+```
+
+**There MUST be a comment such as `// no break` when fall-through is intentional in a non-empty case body.**
+[🔗](https://www.php-fig.org/psr/psr-12/#52-switch-case)
+
+```php
+switch ($status) {
+    case self::STATUS_HALTING:
+        // the same as following;
+    case self::STATUS_CERTAIN:
+        $description = "Using the application.";
+        break;
+}
+```
+
+##### ✤ Splitting expression in parentheses across multiple lines
+
+**Expressions in parentheses MAY be split across multiple lines, where each subsequent line is indented at least once.**
+[🔗](https://www.php-fig.org/psr/psr-12/#52-switch-case)
+
+##### ✤ First condition placement when expression is split across multiple lines
+
+**When doing so, the first condition MUST be on the next line.**
+[🔗](https://www.php-fig.org/psr/psr-12/#52-switch-case)
+
+##### ✤ Closing parenthesis and opening brace placement when expression is split across multiple lines
+
+**The closing parenthesis and opening brace MUST be placed together on their own line with one space between them.**
+[🔗](https://www.php-fig.org/psr/psr-12/#52-switch-case)
+
+##### ✤ Boolean operators between conditions placement when expression is split across multiple lines
+
+**Boolean operators between conditions MUST always be at the beginning or at the end of the line, not a mix of both.**
+[🔗](https://www.php-fig.org/psr/psr-12/#52-switch-case)
+
+```php
+<?php
+
+switch (
+    $expr1
+    && $expr2
+) {
+    // structure body
+}
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#52-switch-case)
+
+```php
+switch (
+    (bool) $status
+    && $this->isRegistered
+) {
+}
+```
+
+### Control structure `while`, `do` - `while`
+
+A while statement looks like the following. Note the placement of parentheses, spaces, and braces.
+
+```php
+<?php
+
+while ($expr) {
+    // structure body
+}
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#53-while-do-while)
+
+#### Control structure `while`
+
+```php
+while ($quantity > 0) {
+    $visualisation .= '*';
+
+    $quantity--;
+}
+```
+
+##### ✤ Splitting expression in parentheses across multiple lines
+
+**Expressions in parentheses MAY be split across multiple lines, where each subsequent line is indented at least once.**
+[🔗](https://www.php-fig.org/psr/psr-12/#53-while-do-while)
+
+##### ✤ First condition placement when expression is split across multiple lines
+
+**When doing so, the first condition MUST be on the next line.**
+[🔗](https://www.php-fig.org/psr/psr-12/#53-while-do-while)
+
+##### ✤ Closing parenthesis and opening brace placement when expression is split across multiple lines
+
+**The closing parenthesis and opening brace MUST be placed together on their own line with one space between them.**
+[🔗](https://www.php-fig.org/psr/psr-12/#53-while-do-while)
+
+##### ✤ Boolean operators between conditions placement when expression is split across multiple lines
+
+**Boolean operators between conditions MUST always be at the beginning or at the end of the line, not a mix of both.**
+[🔗](https://www.php-fig.org/psr/psr-12/#53-while-do-while)
+
+```php
+<?php
+
+while (
+    $expr1
+    && $expr2
+) {
+    // structure body
+}
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#53-while-do-while)
+
+```php
+while (
+    $quantity > 0
+    && $this->isRegistered
+) {
+}
+```
+
+#### Control structure `do` - `while`
+
+```php
+do {
+    $visualisation .= '#';
+
+    $upgrade--;
+} while ($upgrade > 0);
+
+```
+
+##### ✤ Splitting expression in parentheses across multiple lines
+
+**Expressions in parentheses MAY be split across multiple lines, where each subsequent line is indented at least once.**
+[🔗](https://www.php-fig.org/psr/psr-12/#53-while-do-while)
+
+##### ✤ First condition placement when expression is split across multiple lines
+
+**When doing so, the first expression MUST be on the next line.**
+[🔗](https://www.php-fig.org/psr/psr-12/#53-while-do-while)
+
+##### ✤ Closing parenthesis and opening brace placement when expression is split across multiple lines
+
+**The closing parenthesis and opening brace MUST be placed together on their own line with one space between them.**
+[🔗](https://www.php-fig.org/psr/psr-12/#53-while-do-while)
+
+```php
+<?php
+
+do {
+    // structure body;
+} while ($expr);
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#53-while-do-while)
+
+```php
+do {
+} while (
+    $upgrade > 0
+    && $this->isRegistered
+);
+
+```
+
+### Control structure `for`
+
+A for statement looks like the following. Note the placement of parentheses, spaces, and braces.
+
+```php
+<?php
+
+for ($i = 0; $i < 10; $i++) {
+    // for body
+}
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#54-for)
+
+```php
+for ($i = 1; $i <= $skillsCount; $i++) {
+    $visualisation .= $i . '. ' . $skills[$i - 1] . ', ';
+}
+```
+
+##### ✤ Splitting expression in parentheses across multiple lines
+
+**Expressions in parentheses MAY be split across multiple lines, where each subsequent line is indented at least once.**
+[🔗](https://www.php-fig.org/psr/psr-12/#54-for)
+
+##### ✤ First expression placement when expression is split across multiple lines
+
+**When doing so, the first expression MUST be on the next line.**
+[🔗](https://www.php-fig.org/psr/psr-12/#54-for)
+
+##### ✤ Closing parenthesis and opening brace placement when expression is split across multiple lines
+
+**The closing parenthesis and opening brace MUST be placed together on their own line with one space between them.**
+[🔗](https://www.php-fig.org/psr/psr-12/#54-for)
+
+```php
+<?php
+
+for (
+    $i = 0;
+    $i < 10;
+    $i++
+) {
+    // for body
+}
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#54-for)
+
+```php
+for (
+    $i = 1;
+    $i <= $skillsCount;
+    $i++) {
+}
+```
+
+### Control structure `foreach`
+
+A foreach statement looks like the following. Note the placement of parentheses, spaces, and braces.
+
+```php
+<?php
+
+foreach ($iterable as $key => $value) {
+    // foreach body
+}
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#55-foreach)
+
+```php
+foreach ($this->skills as $skillCodename => $skill) {
+    $skillPresentation($skillCodename, $skill);
+}
+```
