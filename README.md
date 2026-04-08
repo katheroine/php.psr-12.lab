@@ -1267,6 +1267,98 @@ function separate()
 
 ### Argument list
 
+```php
+<?php
+
+namespace Vendor\Package;
+
+class ClassName
+{
+    public function foo(int $arg1, &$arg2, $arg3 = [])
+    {
+        // method body
+    }
+}
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#45-method-and-function-arguments)
+
+```php
+<?php
+
+bar();
+$foo->bar($arg1);
+Foo::bar($arg2, $arg3);
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#44-methods-and-functions)
+
+The following are examples of closures with and without argument lists and variable lists split across multiple lines.
+
+```php
+<?php
+
+$longArgs_noVars = function (
+    $longArgument,
+    $longerArgument,
+    $muchLongerArgument
+) {
+   // body
+};
+
+$noArgs_longVars = function () use (
+    $longVar1,
+    $longerVar2,
+    $muchLongerVar3
+) {
+   // body
+};
+
+$longArgs_longVars = function (
+    $longArgument,
+    $longerArgument,
+    $muchLongerArgument
+) use (
+    $longVar1,
+    $longerVar2,
+    $muchLongerVar3
+) {
+   // body
+};
+
+$longArgs_shortVars = function (
+    $longArgument,
+    $longerArgument,
+    $muchLongerArgument
+) use ($var1) {
+   // body
+};
+
+$shortArgs_longVars = function ($arg) use (
+    $longVar1,
+    $longerVar2,
+    $muchLongerVar3
+) {
+   // body
+};
+```
+
+Note that the formatting rules also apply when the closure is used directly in a function or method call as an argument.
+
+```php
+<?php
+
+$foo->bar(
+    $arg1,
+    function ($arg2) use ($var1) {
+        // body
+    },
+    $arg3
+);
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#7-closures)
+
 ##### ✤ Space after opening parethensis of argument list in closure definition/call
 
 **There MUST NOT be a space after the opening parenthesis of the argument list.**
@@ -1279,13 +1371,13 @@ function separate()
 
 ##### ✤ Space before coma on argument list in closure definition/call
 
-**In the argument list there MUST NOT be a space before each comma.**
-[🔗](https://www.php-fig.org/psr/psr-12/#7-closures)
+**In the argument list, there MUST NOT be a space before each comma.**
+[🔗](https://www.php-fig.org/psr/psr-12/#44-methods-and-functions)
 
 ##### ✤ Space after coma on argument list in closure definition/call
 
-**In the argument list there MUST be one space after each comma.**
-[🔗](https://www.php-fig.org/psr/psr-12/#7-closures)
+**In the argument list, there MUST be one space after each comma.**
+[🔗](https://www.php-fig.org/psr/psr-12/#44-methods-and-functions)
 
 `function ($skillCodename, $skill)`
 
@@ -1300,21 +1392,47 @@ function separate()
 
 **Argument lists MAY be split across multiple lines, where each subsequent line is indented once.**
 [🔗](https://www.php-fig.org/psr/psr-12/#7-closures)
+[🔗](https://www.php-fig.org/psr/psr-12/#45-method-and-function-arguments)
+[🔗](https://www.php-fig.org/psr/psr-12/#47-method-and-function-calls)
 
 ##### ✤ Arguments placement on list of function/closure arguments split acros multi lines in closure definition/call
 
 **When doing so, the first item in the list MUST be on the next line.**
 [🔗](https://www.php-fig.org/psr/psr-12/#7-closures)
+[🔗](https://www.php-fig.org/psr/psr-12/#45-method-and-function-arguments)
+[🔗](https://www.php-fig.org/psr/psr-12/#47-method-and-function-calls)
+
+```php
+<?php
+
+$foo->bar(
+    $longArgument,
+    $longerArgument,
+    $muchLongerArgument
+);
+<?php
+
+somefunction($foo, $bar, [
+  // ...
+], $baz);
+
+$app->get('/hello/{name}', function ($name) use ($app) {
+    return 'Hello ' . $app->escape($name);
+});
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#47-method-and-function-calls)
 
 ##### ✤ Number of arguments per line on list of function/closure arguments split acros multi lines in closure definition/call
 
 **There MUST be only one argument per line.**
-[🔗](https://www.php-fig.org/psr/psr-12/#7-closures)
+[🔗](https://www.php-fig.org/psr/psr-12/#45-method-and-function-arguments)
+[🔗](https://www.php-fig.org/psr/psr-12/#47-method-and-function-calls)
 
 ##### ✤ Closing parenthesis and opening brace in closure with list of closure arguments split acros multi lines in closure definition/call
 
-**When the ending list of arguments is split across multiple lines, the closing parenthesis and opening brace MUST be placed together on their own line with one space between them.**
-[🔗](https://www.php-fig.org/psr/psr-12/#7-closures)
+**When the argument list is split across multiple lines, the closing parenthesis and opening brace MUST be placed together on their own line with one space between them.**
+[🔗](https://www.php-fig.org/psr/psr-12/#45-method-and-function-arguments)
 
 ```php
 function (
@@ -1342,6 +1460,72 @@ function (
 [🔗](https://www.php-fig.org/psr/psr-12/#7-closures)
 
 ### Variable list
+
+The following are examples of closures with and without argument lists and variable lists split across multiple lines.
+
+```php
+<?php
+
+$longArgs_noVars = function (
+    $longArgument,
+    $longerArgument,
+    $muchLongerArgument
+) {
+   // body
+};
+
+$noArgs_longVars = function () use (
+    $longVar1,
+    $longerVar2,
+    $muchLongerVar3
+) {
+   // body
+};
+
+$longArgs_longVars = function (
+    $longArgument,
+    $longerArgument,
+    $muchLongerArgument
+) use (
+    $longVar1,
+    $longerVar2,
+    $muchLongerVar3
+) {
+   // body
+};
+
+$longArgs_shortVars = function (
+    $longArgument,
+    $longerArgument,
+    $muchLongerArgument
+) use ($var1) {
+   // body
+};
+
+$shortArgs_longVars = function ($arg) use (
+    $longVar1,
+    $longerVar2,
+    $muchLongerVar3
+) {
+   // body
+};
+```
+
+Note that the formatting rules also apply when the closure is used directly in a function or method call as an argument.
+
+```php
+<?php
+
+$foo->bar(
+    $arg1,
+    function ($arg2) use ($var1) {
+        // body
+    },
+    $arg3
+);
+```
+
+-- [PSR Documentation](https://www.php-fig.org/psr/psr-12/#7-closures)
 
 ##### ✤ Space after opening parethensis of variable list in closure definition/call
 
