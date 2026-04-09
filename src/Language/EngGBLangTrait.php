@@ -6,6 +6,12 @@
  * Licensed under GPL-3.0 - see LICENSE.md
  */
 
-require_once(__DIR__ . '/../vendor/autoload.php');
-require_once('structure.php');
-require_once('view.php');
+declare(strict_types=1);
+
+namespace PHPLab\StandardPSR12\Language;
+
+trait EngGBLangTrait
+{
+    public const NAME = 'english';
+    public const CODE = 'en-GB';
+}

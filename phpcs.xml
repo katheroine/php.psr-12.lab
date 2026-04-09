@@ -1,5 +1,5 @@
 <ruleset xmlns:xsi="http://w3.org" name="PHPLab_PSR-12" xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
-    <description>Ruleset for PSR-1 only</description>
+    <description>Ruleset for PSR-12 only</description>
 
     <arg name="colors"/>
     <arg value="sp"/> <!-- Show progress and sniff codes -->
@@ -8,6 +8,7 @@
     <config name="installed_paths" value="/var/www/vendor/squizlabs/php_codesniffer/src/Standards"/>
 
     <file>public</file>
+    <file>src</file>
 
     <rule ref="PSR12"/>
 </ruleset>
