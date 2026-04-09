@@ -2025,7 +2025,7 @@ abstract class ClassName
 ##### ✤ Class constant visiblity declaration
 
 **Visibility MUST be declared on all constants if your project PHP minimum version supports constant visibilities (PHP 7.1 or later).**
-[🔗](Visibility MUST be declared on all constants if your project PHP minimum version supports constant visibilities)
+[🔗](https://www.php-fig.org/psr/psr-12/#43-properties-and-constants)
 
 ```php
 public const STATUS_HALTING = 'halting';
